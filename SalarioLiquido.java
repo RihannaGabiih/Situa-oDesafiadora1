@@ -8,134 +8,127 @@ public class SalarioLiquido {
 
 		Scanner sc = new Scanner(System.in);
 
-		// variaveis para ler as entradas dos usúarios
-		double salariob; // ler o salario bruto
-		int numdepen; // ler o numero de dependentes
-		String planosaude; // ler o plano de saude
-		String valetrans; // ler o vale transporte
-		String valealimen; // ler o vale alimentação
-		String valerefeicao; // ler o vale alimentação
+        // variáveis para ler as entradas dos usuários
+        double salarioBruto; // ler o salário bruto
+        int numDependentes; // ler o número de dependentes
+        String planoSaude; // ler o plano de saúde
+        String valeTransporte; // ler o vale transporte
+        String valeAlimentacao; // ler o vale alimentação
+        String valeRefeicao; // ler o vale refeição
 
-		// pede os dados para o usuario
-		System.out.print("Digite seu salário bruto:");// pede o salario bruto
-		salariob = sc.nextDouble();
+        // pede os dados para o usuário
+        System.out.print("Digite seu salário bruto: "); // pede o salário bruto
+        salarioBruto = sc.nextDouble();
 
-		System.out.println("Digite o números de dependentes:");// pede o número de dependentes
-		numdepen = sc.nextInt();
+        System.out.println("Digite o número de dependentes: "); // pede o número de dependentes
+        numDependentes = sc.nextInt();
 
-		String nomeplano = "";// Ler qual o plano de saude utilizado
+        String nomePlano = ""; // Ler qual o plano de saúde utilizado
 
-		System.out.println("Você utiliza plano de saúde?(Sim ou não)");// pergunta se utiliza plano de saude
-		planosaude = sc.next();
-		while (!planosaude.equalsIgnoreCase("Sim") && !planosaude.equalsIgnoreCase("Não")) {
-			System.out.print(" Digite 'Sim' ou 'Não': ");
-			planosaude = sc.next();
-		}
-		if (planosaude.equalsIgnoreCase("Sim")) {
-			System.out.println("Qual o plano utilizado?(Avançado ou Básico)");
-			nomeplano = sc.next();
-			while (!nomeplano.equalsIgnoreCase("Básico") && !nomeplano.equalsIgnoreCase("Avançado")) {
-				System.out.print("Digite 'Básico' ou 'Avançado': ");
-				nomeplano = sc.next();
-			}
+        System.out.println("Você utiliza plano de saúde? (Sim ou Não): "); // pergunta se utiliza plano de saúde
+        planoSaude = sc.next();
+        while (!planoSaude.equalsIgnoreCase("Sim") && !planoSaude.equalsIgnoreCase("Não")) {
+            System.out.print("Digite 'Sim' ou 'Não': ");
+            planoSaude = sc.next();
+        }
+        if (planoSaude.equalsIgnoreCase("Sim")) {
+            System.out.println("Qual o plano utilizado? (Avançado ou Básico): ");
+            nomePlano = sc.next();
+            while (!nomePlano.equalsIgnoreCase("Básico") && !nomePlano.equalsIgnoreCase("Avançado") && !nomePlano.equalsIgnoreCase("Basico")) {
+                System.out.print("Digite 'Básico' ou 'Avançado': ");
+                nomePlano = sc.next();
+            }
+        }
 
-		} else {
+        System.out.println("Você utiliza vale transporte? (Sim ou Não): "); // pergunta se utiliza o vale transporte
+        valeTransporte = sc.next();
+        while (!valeTransporte.equalsIgnoreCase("Sim") && !valeTransporte.equalsIgnoreCase("Não")) {
+            System.out.print("Digite 'Sim' ou 'Não': ");
+            valeTransporte = sc.next();
+        }
 
-		}
+        System.out.println("Você utiliza vale alimentação? (Sim ou Não): "); // pergunta se utiliza o vale alimentação
+        valeAlimentacao = sc.next();
+        while (!valeAlimentacao.equalsIgnoreCase("Sim") && !valeAlimentacao.equalsIgnoreCase("Não")) {
+            System.out.print("Digite 'Sim' ou 'Não': ");
+            valeAlimentacao = sc.next();
+        }
 
-		System.out.println("Você utliza vale transporte?(Sim ou não)");// pergunta se utiliza o vale transporte
-		valetrans = sc.next();
-		while (!valetrans.equalsIgnoreCase("Sim") && !valetrans.equalsIgnoreCase("Não")) {
-			System.out.print("Digite 'Sim' ou 'Não': ");
-			valetrans = sc.next();
-		}
+        System.out.println("Você utiliza vale refeição? (Sim ou Não): "); // pergunta se utiliza o vale refeição
+        valeRefeicao = sc.next();
+        while (!valeRefeicao.equalsIgnoreCase("Sim") && !valeRefeicao.equalsIgnoreCase("Não")) {
+            System.out.print("Digite 'Sim' ou 'Não': ");
+            valeRefeicao = sc.next();
+        }
 
-		System.out.println("Você utiliza o vale alimentação?(Sim ou não)");// pergunta se utiliza o vale alimentação
-		valealimen = sc.next();
-		while (!valealimen.equalsIgnoreCase("Sim") && !valealimen.equalsIgnoreCase("Não")) {
-			System.out.print("Digite 'Sim' ou 'Não': ");
-			valealimen = sc.next();
-		}
+        // calcular o desconto do INSS
+        double salarioINSS = 0; // variável para armazenar o valor após o desconto do INSS
 
-		System.out.println("Você utiliza o vale refeição?(Sim ou não)");// pergunta se utiliza o vale refeição
-		valerefeicao = sc.next();
-		while (!valerefeicao.equalsIgnoreCase("Sim") && !valerefeicao.equalsIgnoreCase("Não")) {
-			System.out.print("Digite 'Sim' ou 'Não': ");
-			valerefeicao = sc.next();
-		}
+        if (salarioBruto <= 1302) {
+            salarioINSS = salarioBruto - (salarioBruto * 0.08);
+        } else if (salarioBruto > 1302 && salarioBruto < 2571) {
+            salarioINSS = salarioBruto - (salarioBruto * 0.09);
+        } else if (salarioBruto > 2571 && salarioBruto < 3856) {
+            salarioINSS = salarioBruto - (salarioBruto * 0.11);
+        } else if (salarioBruto > 3856 && salarioBruto < 7087.22) {
+            salarioINSS = salarioBruto - (salarioBruto * 0.14);
+        } else {
+            salarioINSS = salarioBruto - 570.88;
+        }
 
-		// calcular o desconto do inss
-		double salarioinss = 0; // variável pra armazenar o valor após o desconto do inss
+        // calcular o valor do desconto do imposto de renda
+        double salarioDependentes; // variável para armazenar o valor após o número de dependentes
 
-		if (salariob <= 1302) {
-			salarioinss = salariob - (salariob * 0.08);
-		} else if (salariob > 1302 && salariob < 2571) {
-			salarioinss = salariob - (salariob * 0.09);
-		} else if (salariob > 2571 && salariob < 3856) {
-			salarioinss = salariob - (salariob * 0.11);
-		} else if (salariob > 3856 && salariob < 7087.22) {
-			salarioinss = salariob - (salariob * 0.14);
-		} else {
-			salarioinss = salariob - 570.88;
-		}
+        salarioDependentes = salarioINSS - (189.59 * numDependentes);
 
-		// calcular o valor do desconto do imposto de renda
-		double salariodep; // variavel para armazenar o valor após o numero de dependentes
+        double salarioIR = 0; // variável para armazenar o valor após o desconto do imposto de renda
 
-		salariodep = salarioinss - (189.59 * numdepen);
+        if (salarioDependentes > 1903.98 && salarioDependentes < 2826.66) {
+            salarioIR = (salarioDependentes * 0.075) - 142.80;
+        } else if (salarioDependentes > 2826.65 && salarioDependentes < 3751.06) {
+            salarioIR = (salarioDependentes * 0.15) - 354.80;
+        } else if (salarioDependentes > 3751.05 && salarioDependentes < 4664.69) {
+            salarioIR = (salarioDependentes * 0.225) - 636.13;
+        } else if (salarioDependentes > 4664.68) {
+            salarioIR = (salarioDependentes * 0.275) - 869.36;
+        }
 
-		double salarioir = 0; // variavel para armazenar o valor após o desconto do imposto de renda
+        double salarioValeTransporte = 0; // variável para ler o desconto do vale transporte
+        if (valeTransporte.equalsIgnoreCase("Sim")) {
+            salarioValeTransporte = salarioBruto * 0.06;
+        }
 
-		if (salariodep > 1903.98 && salariodep < 2826.66) {
-			salarioir = (salariodep * 0.075) - 142.80;
-		} else if (salariodep > 2826.65 && salariodep < 3751.06) {
-			salarioir = (salariodep * 0.15) - 354.80;
-		} else if (salariodep > 3751.05 && salariodep < 4664.69) {
-			salarioir = (salariodep * 0.225) - 636.13;
-		} else if (salariodep > 4664.68) {
-			salarioir = (salariodep * 0.275) - 869.36;
-		}
-		double salariovaletrans = 0; // variavel para ler o desconto do vale transporte
-		if (valetrans.equalsIgnoreCase("Sim")) {
-			salariovaletrans = salariob * 0.06;
-		} else {
+        double salarioValeAlimentacao = 0; // variável para ler o desconto do vale alimentação
+        if (valeAlimentacao.equalsIgnoreCase("Sim")) {
+            salarioValeAlimentacao = 200;
+        }
 
-		}
-		double salariovalealimen = 0;// variavel para ler o desconto do vale alimentação
-		if (valealimen.equalsIgnoreCase("Sim")) {
-			salariovalealimen = 200;
-		} else {
+        double salarioValeRefeicao = 0; // variável para ler o desconto do vale refeição
+        if (valeRefeicao.equalsIgnoreCase("Sim")) {
+            salarioValeRefeicao = 200;
+        }
 
-		}
-		double salariovalerefeicao = 0; // variavel para ler o desconto do vale refeiçao
-		if (valerefeicao.equalsIgnoreCase("Sim")) {
-			salariovalerefeicao = 200;
-		} else {
+        double salarioPlanoSaude = 0; // variável para ler o desconto do plano de saúde
+        if (nomePlano.equalsIgnoreCase("Básico") && !nomePlano.equalsIgnoreCase("Basico")) {
+            salarioPlanoSaude = 150;
+        } else if (nomePlano.equalsIgnoreCase("Avançado")) {
+            salarioPlanoSaude = 300;
+        }
 
-		}
-		double salarioplanos = 0; // variavel para ler o desconto do plano de saude
-		if (nomeplano.equalsIgnoreCase("Básico")) {
-			salarioplanos = 150;
-		} else if (nomeplano.equalsIgnoreCase("Avançado")) {
-			salarioplanos = 300;
-		} else {
+        // mostrar o salário líquido
+        double salarioLiquido = salarioINSS - salarioIR - salarioValeTransporte - salarioValeAlimentacao - salarioValeRefeicao
+                - salarioPlanoSaude;
+        System.out.printf("O salário líquido é: R$ %.2f\n", salarioLiquido);
 
-		}
+        // mostrar o total de descontos e seu percentual
+        double totalDescontos = salarioIR + salarioValeTransporte + salarioValeAlimentacao + salarioValeRefeicao + salarioPlanoSaude
+                + (salarioBruto - salarioINSS);
+        double percentualDesconto = (totalDescontos / salarioBruto) * 100;
 
-		// mostrar o salario liquido
-		double salariof = salarioinss - salarioir - salariovaletrans - salariovalealimen - salariovalerefeicao
-				- salarioplanos;
-		System.out.printf("O salario é: %.2f\n", salariof);
+        System.out.printf("Total de descontos: R$ %.2f\n", totalDescontos);
+        System.out.printf("Percentual de desconto: %.2f%%\n", percentualDesconto);
 
-		// mostrar o total de descontos e seu percentual
-		double totalDescontos = salarioir + salariovaletrans + salariovalealimen + salariovalerefeicao + salarioplanos
-				+ (salariob - salarioinss);
-		double percentualDesconto = (totalDescontos / salariob) * 100;
-
-		System.out.printf("Total de descontos: R$ %.2f\n", totalDescontos);
-		System.out.printf("Percentual de desconto: %.2f%%\n", percentualDesconto);
-
-		sc.close();
+        sc.close();
 	}
 
 }
